@@ -7,6 +7,7 @@
       "build": "npx tsc",
       "start": "ts-node src/index.ts",
       "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
+      "prestart": "typeorm migration:run -d src/datasource/data-source.ts",
       "typeorm": "typeorm-ts-node-commonjs"
    },
    "keywords": [],
