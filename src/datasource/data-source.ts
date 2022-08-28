@@ -1,7 +1,5 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
-import { Agendamento } from "./entity/Agendamento";
-import { CreateAgendamento1661482432672 } from "./migration/1661482432672-CreateAgendamento";
 
 export const AppDataSource = new DataSource({
   type: "postgres",
@@ -12,13 +10,7 @@ export const AppDataSource = new DataSource({
   database: process.env.APP_DATABASE,
   synchronize: true,
   logging: false,
-  entities: [Agendamento],
-  migrations: [CreateAgendamento1661482432672],
+  entities: ['dist/datasource/entity/*.js'],
+  migrations: ['dist/datasource/migration/'],
   subscribers: [],
 });
-
-AppDataSource.initialize()
-  .then(() => {
-    console.log("Database conectaada");
-  })
-  .catch((error) => console.log(error));

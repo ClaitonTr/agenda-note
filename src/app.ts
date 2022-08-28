@@ -3,8 +3,15 @@ import cors from "cors";
 import "reflect-metadata";
 import helmet from "helmet";
 import routes from './routes'
+import { AppDataSource } from "./datasource/data-source";
 
 const app: Express = express();
+
+AppDataSource.initialize()
+  .then(() => {
+    console.log("Database conectaada");
+  })
+  .catch((error) => console.log(error));
 
 const options: cors.CorsOptions = {
   credentials: true,
