@@ -5,11 +5,7 @@ import { CreateAgendamento1661482432672 } from "./migration/1661482432672-Create
 
 export const AppDataSource = new DataSource({
   type: "postgres",
-  host: "localhost",
-  port: 5432,
-  username: "postgres",
-  password: "postgres",
-  database: "agenda_note",
+  url: process.env.DATABASE_URL,
   synchronize: true,
   logging: false,
   entities: [Agendamento],
@@ -18,8 +14,7 @@ export const AppDataSource = new DataSource({
 });
 
 AppDataSource.initialize()
-    .then(() => {
-        console.log('Database conectaada');
-        
-    })
-    .catch((error) => console.log(error))
+  .then(() => {
+    console.log("Database conectada");
+  })
+  .catch((error) => console.log(error));
