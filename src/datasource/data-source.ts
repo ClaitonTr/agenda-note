@@ -8,10 +8,12 @@ export const AppDataSource = new DataSource({
   username: process.env.DATABASE_USER,
   password: process.env.DATABASE_PASSWORD,
   database: process.env.APP_DATABASE,
-  ssl: true,
+  ssl: {
+    rejectUnauthorized: false,
+  },
   synchronize: true,
   logging: false,
-  entities: ['dist/datasource/entity/*.js'],
-  migrations: ['dist/datasource/migration/'],
+  entities: ["dist/datasource/entity/*.js"],
+  migrations: ["dist/datasource/migration/"],
   subscribers: [],
 });
