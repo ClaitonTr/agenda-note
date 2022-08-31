@@ -13,7 +13,7 @@ export class Agendamento {
     departamento: string
 
     @Column({name: 'dataagendamento'})
-    dataRetirada: Date
+    dataRetirada: string
 
     @Column({name: 'horainicial'})
     horaInicial: string
