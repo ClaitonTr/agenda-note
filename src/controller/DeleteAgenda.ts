@@ -10,6 +10,10 @@ export async function deleteAgenda(request: Request, response: Response) {
 
     const agendamento = await agendamentoRepository.findOneBy({id});
 
+    if(!agendamento) {
+        return response.status(404).json({msg: 'Agendamento não encontrado'});
+    }
+
     agendamentoRepository.remove(agendamento);
 
     response.status(204).send('Agendamento deletado');
