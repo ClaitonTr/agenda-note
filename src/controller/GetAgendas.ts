@@ -3,15 +3,13 @@ import { AppDataSource } from "../datasource/data-source";
 import { Agendamento } from "../datasource/entity/Agendamento";
 
 export async function getAgendas(request: Request, response: Response) {
+  const postRepository = AppDataSource.getRepository(Agendamento);
 
-    const postRepository = AppDataSource.getRepository(Agendamento);
+  const agendas = await postRepository.find();
 
-    const agendas = await postRepository.find();
-
-    if (agendas.length < 1) {
-        response.status(404).send('Nehum registro encontrado');
-    }else {
-        response.status(200).send(agendas);
-    }
-    
+  if (agendas.length < 1) {
+    response.status(404).json({ msg: "Nehum registro encontrado" });
+  } else {
+    response.status(200).json(agendas);
+  }
 }
